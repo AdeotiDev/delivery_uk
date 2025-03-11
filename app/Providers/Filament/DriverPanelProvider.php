@@ -28,7 +28,7 @@ class DriverPanelProvider extends PanelProvider
             ->id('driver')
             ->path('app')
             ->login()
-            // ->brandName(Setting::first()->app_name ?? 'Deliverio')
+            ->brandName(Setting::first()->app_name ?? 'Deliverio')
             ->colors([
                 'primary' => Color::Amber,
             ])
