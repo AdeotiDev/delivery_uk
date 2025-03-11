@@ -36,7 +36,7 @@ class User extends Authenticatable
             if (Auth::user()->role === 'admin') {
                 return true;
             }
-            return true;
+            return false;
         }
 
         if ($panel->getId() === 'app') {
@@ -47,7 +47,7 @@ class User extends Authenticatable
             return false;
         }
 
-        return true; // Default to allowing access for other panels
+        return false; // Default to allowing access for other panels
     }
 
     /**
