@@ -22,7 +22,7 @@ class UpdateDeliveryResource extends Resource
     protected static ?string $model = Delivery::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-arrow-path-rounded-square';
-    protected static ?string $modelLabel = 'Update Status';
+    protected static ?string $modelLabel = 'Update Status ';
 
     public static function canCreate(): bool
     {
