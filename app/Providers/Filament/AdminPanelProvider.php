@@ -29,7 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('cpanel')
             ->login()
-            ->brandName(Setting::first()->app_name ?? 'Deliverio')
+            // ->brandName(Setting::first()->app_name ?? 'Deliverio')
             ->colors([
                 'primary' => Color::Red,
             ])
