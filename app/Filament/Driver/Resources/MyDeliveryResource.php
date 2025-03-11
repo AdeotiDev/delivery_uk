@@ -24,6 +24,7 @@ class MyDeliveryResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
     protected static ?string $navigationGroup = 'History';
+    protected static ?string $modelLabel = 'My Deliveries';
 
 
     public static function canCreate(): bool
@@ -62,7 +63,6 @@ class MyDeliveryResource extends Resource
                         'Pending' => 'gray',
                         'delivered' => 'success',
                         'in progress' => 'warning',
-
                     }),
                 TextColumn::make('created_at'),
             ])
