@@ -39,7 +39,7 @@ class User extends Authenticatable
             return false;
         }
 
-        if ($panel->getId() === 'app') {
+        if ($panel->getId() === 'driver') {
             // Check if the authenticated user has an associated student record
             if (Auth::user()->role === 'driver') {
                 return true;
