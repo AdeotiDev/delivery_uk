@@ -36,7 +36,7 @@ class User extends Authenticatable
             if (Auth::user()->role === 'admin') {
                 return true;
             }
-            return false;
+            return true;
         }
 
         if ($panel->getId() === 'app') {
