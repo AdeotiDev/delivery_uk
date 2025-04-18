@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Delivery;
+use App\Models\DeliveryRegister;
 use App\Models\User;
 use App\Models\Vehicle;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
@@ -20,7 +21,7 @@ class AppStat extends BaseWidget
             Stat::make('Vehicles', Vehicle::count())
                 ->color('primary')
                 ->icon('heroicon-s-users'),
-            Stat::make('Pending Deliveries', Delivery::where('status', 'pending')->count())
+            Stat::make('Pending Deliveries', DeliveryRegister::whereNull('time_out')->count())
                 ->color('primary')
                 ->icon('heroicon-s-users'),
 
