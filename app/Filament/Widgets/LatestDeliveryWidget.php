@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Models\Delivery;
+use App\Models\DeliveryRegister;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -16,16 +17,16 @@ class LatestDeliveryWidget extends BaseWidget
     {
         return $table
             ->query(
-                Delivery::query()
+                DeliveryRegister::query()
             )
             ->columns([
                 // ...
                 TextColumn::make('tracking_number'),
-                TextColumn::make('sender_name'),
-                TextColumn::make('sender_phone'),
-                TextColumn::make('pickup_address'),
-                TextColumn::make('dropoff_address'),
-                TextColumn::make('status')
+                TextColumn::make('user.name')->label('Driver'),
+                TextColumn::make('vehicle.name')->label('Vehicle'),
+                TextColumn::make('time_in')->date(),
+                TextColumn::make('time_out')->date()->placeholder('Not filled!'),
+                TextColumn::make('hours_worked')->placeholder('Not available!')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'pending' => 'gray',
