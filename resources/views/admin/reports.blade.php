@@ -4,7 +4,7 @@
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="fw-bold">{{ $settings->app_name ?? 'Delivery Report Generator' }}</h2>
+            <h2 class="fw-bold"><a href="https://akkcrown.co.uk/cpanel">{{ $settings->app_name ?? 'Delivery Report Generator' }}</a></h2>
             <p class="text-muted mb-0">{{ $settings->app_address ?? '' }}</p>
         </div>
     </div>
@@ -12,7 +12,7 @@
     <!-- Report Filter Form -->
     <div class="card shadow-sm mb-5">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0"><a href="https://akkcrown.co.uk/cpanel">Generate Delivery Report</a></h5>
+            <h5 class="mb-0">Generate Delivery Report</h5>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.reports') }}" method="GET" id="reportForm" class="row g-4">
