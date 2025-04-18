@@ -23,6 +23,9 @@ class DeliveryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
     protected static ?string $navigationGroup = 'Motion';
+    protected static bool $isDiscovered = false;
+
+
 
     public static function form(Form $form): Form
     {

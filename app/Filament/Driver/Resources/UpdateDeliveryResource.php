@@ -2,8 +2,8 @@
 
 namespace App\Filament\Driver\Resources;
 
-use App\Filament\Driver\Resources\UpdateDeliveryResource\Pages;
 use App\Filament\Driver\Resources\UpdateDeliveryResource\RelationManagers;
+use App\Filament\Driver\Resources\UpdateDeliveryResource\Pages;
 use App\Models\Delivery;
 use App\Models\UpdateDelivery;
 use Filament\Forms;
@@ -23,6 +23,7 @@ class UpdateDeliveryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-arrow-path-rounded-square';
     protected static ?string $modelLabel = 'Update Status ';
+    protected static bool $isDiscovered = false;
 
     public static function canCreate(): bool
     {

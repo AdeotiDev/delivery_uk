@@ -8,6 +8,7 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -30,6 +31,12 @@ class AdminPanelProvider extends PanelProvider
             ->path('cpanel')
             ->login()
             ->brandName(Setting::first()->app_name ?? 'Deliverio')
+            ->navigationItems([
+                NavigationItem::make('Delivery Reports')
+                    ->url('/admin/reports')
+                    ->group('Motion')
+                    ->icon('heroicon-o-chart-pie'),
+            ])
             ->colors([
                 'primary' => Color::Red,
             ])

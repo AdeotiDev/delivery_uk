@@ -25,6 +25,10 @@ class MyDeliveryResource extends Resource
 
     protected static ?string $navigationGroup = 'History';
     protected static ?string $modelLabel = 'My Deliveries';
+    protected static bool $isDiscovered = false;
+
+
+
 
 
     public static function canCreate(): bool
