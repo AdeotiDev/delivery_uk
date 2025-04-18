@@ -12,7 +12,7 @@
     <!-- Report Filter Form -->
     <div class="card shadow-sm mb-5">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Generate Delivery Report</h5>
+            <h5 class="mb-0"><a href="https://akkcrown.co.uk/cpanel">Generate Delivery Report</a></h5>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.reports') }}" method="GET" id="reportForm" class="row g-4">
