@@ -56,6 +56,9 @@ class DeliveryRegisterResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->query(
+                DeliveryRegister::query()->where('user_id', Auth::user()->id)
+            )
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
@@ -72,11 +75,11 @@ class DeliveryRegisterResource extends Resource
                     ->dateTime()
                     ->copyable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('delivery_time')
-                    ->copyable()
-                    ->dateTime()
-                    ->placeholder('Not filled!')
-                    ->sortable(),
+                // Tables\Columns\TextColumn::make('delivery_time')
+                //     ->copyable()
+                //     ->dateTime()
+                //     ->placeholder('Not filled!')
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('hours_worked')
                     ->placeholder('Not available!')
                     ->copyable()

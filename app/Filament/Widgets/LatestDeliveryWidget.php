@@ -27,13 +27,7 @@ class LatestDeliveryWidget extends BaseWidget
                 TextColumn::make('time_in')->date(),
                 TextColumn::make('time_out')->date()->placeholder('Not filled!'),
                 TextColumn::make('hours_worked')->placeholder('Not available!')
-                    ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        'pending' => 'gray',
-                        'Pending' => 'gray',
-                        'delivered' => 'success',
-                        'in progress' => 'warning',
-                    }),
+                    ->badge(),
                 TextColumn::make('created_at'),
             ]);
     }

@@ -4,9 +4,11 @@ namespace App\Filament\Driver\Widgets;
 
 use Filament\Tables;
 use App\Models\Delivery;
+use App\Models\DeliveryRegister;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Widgets\TableWidget as BaseWidget;
+use Illuminate\Support\Facades\Auth;
 
 class DriverLatestDeliveryWidget extends BaseWidget
 {
@@ -16,21 +18,45 @@ class DriverLatestDeliveryWidget extends BaseWidget
         return $table
             ->query(
                 // ...
-                Delivery::query()->where('driver_id', auth()->user()->id)->latest()
+                DeliveryRegister::query()->where('user_id', Auth::user()->id)->latest()
             )
             ->columns([
                 // ...
-                TextColumn::make('tracking_number'),
-                TextColumn::make('status')
-                    ->badge()
-                    ->color(fn(string $state): string => match ($state) {
-                        'pending' => 'gray',
-                        'Pending' => 'gray',
-                        'delivered' => 'success',
-                        'in progress' => 'warning',
-                    }),
-                TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('vehicle.name')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('time_in')
+                    ->dateTime()
+                    ->copyable()
+                    ->sortable(),
+                TextColumn::make('time_out')
+                    ->placeholder('Not filled!')
+                    ->dateTime()
+                    ->copyable()
+                    ->sortable(),
+                // Tables\Columns\TextColumn::make('delivery_time')
+                //     ->copyable()
+                //     ->dateTime()
+                //     ->placeholder('Not filled!')
+                //     ->sortable(),
+                Tables\Columns\TextColumn::make('hours_worked')
+                    ->placeholder('Not available!')
+                    ->copyable()
+                    ->numeric()
+                    ->sortable(),
+                // Tables\Columns\IconColumn::make('closed_status')
+                //     ->boolean(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ]);
     }
 }
