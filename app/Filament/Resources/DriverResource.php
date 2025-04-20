@@ -63,7 +63,7 @@ class DriverResource extends Resource
             ->columns([
                 //
                 TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('email')->copyable(),
                 TextColumn::make('phone'),
                 TextColumn::make('created_at')
                 ->dateTime()
