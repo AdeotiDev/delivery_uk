@@ -20,42 +20,49 @@
                 <!-- Report Type -->
                 <div class="col-md-3">
                     <label class="form-label fw-semibold">Report Type</label>
-                    <select class="form-select" name="report_type" id="report_type" required>
+                    {{-- <select class="form-select" name="report_type" id="report_type" required>
                         <option value="weekly">Weekly</option>
                         <option value="monthly">Monthly</option>
                         <option value="yearly">Yearly</option>
+                    </select> --}}
+
+                    <select class="form-select" name="report_type" id="report_type" required>
+                        <option value="weekly" {{ request('report_type') == 'weekly' ? 'selected' : '' }}>Weekly</option>
+                        <option value="monthly" {{ request('report_type') == 'monthly' ? 'selected' : '' }}>Monthly</option>
+                        <option value="yearly" {{ request('report_type') == 'yearly' ? 'selected' : '' }}>Yearly</option>
                     </select>
+                    
                 </div>
 
                 <!-- Scope -->
                 <div class="col-md-3">
                     <label class="form-label fw-semibold">Scope</label>
                     <select class="form-select" name="scope" id="scope" required>
-                        <option value="individual">Individual</option>
-                        <option value="general">General</option>
+                        <option value="individual" {{ request('scope') == 'individual' ? 'selected' : '' }}>Individual</option>
+                        <option value="general" {{ request('scope') == 'general' ? 'selected' : '' }}>General</option>
                     </select>
                 </div>
 
                 <!-- Weekly: Single Date -->
                 <div class="col-md-3 date-field" id="dateField">
                     <label class="form-label fw-semibold">Date</label>
-                    <input type="date" class="form-control" name="date" id="dateInput">
+                    <input type="date" class="form-control" name="date" value="{{ request('date') }}" id="dateInput">
                 </div>
 
                 <!-- Monthly: Date Range -->
                 <div class="col-md-3 date-field d-none" id="dateRange">
                     <label class="form-label fw-semibold">Date From</label>
-                    <input type="date" class="form-control mb-2" name="date_from">
+                    <input type="date" class="form-control mb-2" value="{{ request('date_from') }}" name="date_from">
                     <label class="form-label fw-semibold">Date To</label>
-                    <input type="date" class="form-control" name="date_to">
+                    <input type="date" class="form-control" value="{{ request('date_to') }}" name="date_to">
                 </div>
 
                 <!-- Yearly: Month Range -->
                 <div class="col-md-3 date-field d-none" id="monthRange">
                     <label class="form-label fw-semibold">Month From</label>
-                    <input type="month" class="form-control mb-2" name="month_from">
+                    <input type="month" class="form-control mb-2" name="month_from" value="{{ request('month_from') }}">
                     <label class="form-label fw-semibold">Month To</label>
-                    <input type="month" class="form-control" name="month_to">
+                    <input type="month" class="form-control" name="month_to" value="{{ request('month_to') }}">
                 </div>
 
                 <!-- Driver Select -->
@@ -64,7 +71,7 @@
                     <select class="form-select" name="driver_id">
                         <option value="">Select Driver</option>
                         @foreach($drivers as $driver)
-                            <option value="{{ $driver->id }}">{{ $driver->name }}</option>
+                            <option value="{{ $driver->id }}" {{ request('driver_id') == $driver->id ? 'selected' : '' }}>{{ $driver->name }}</option>
                         @endforeach
                     </select>
                 </div>
