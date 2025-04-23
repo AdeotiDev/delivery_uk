@@ -26,6 +26,9 @@
                         @endif
                         <th>Date</th>
                         <th>Vehicle No</th>
+                        <th>Vehicle Temprature</th>
+                        <th>Product Temprature</th>
+                        <th>Delivery Temprature</th>
                         <th>Time In</th>
                         <th>Time Out</th>
                         <th>Hours Worked</th>
@@ -41,6 +44,9 @@
                             @endif
                             <td>{{ \Carbon\Carbon::parse($item->time_in)->format('M d, Y') }}</td>
                             <td>{{ $item->vehicle->plate_number ?? '-' }}</td>
+                            <td>{{ $item->vehicle_temprature ?? '-' }}</td>
+                            <td>{{ $item->product_temprature ?? '-' }}</td>
+                            <td>{{ $item->delivery_temprature ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->time_in)->format('H:i') }}</td>
                             <td>
                                 @if($item->time_out)

@@ -21,6 +21,7 @@ use App\Filament\Driver\Resources\DeliveryRegisterResource\Pages\TimeOutForm;
 use App\Filament\Driver\Resources\DeliveryRegisterResource\RelationManagers;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 
 class DeliveryRegisterResource extends Resource
@@ -40,6 +41,13 @@ class DeliveryRegisterResource extends Resource
                         ->label('Vehicle')
                         ->required()
                         ->options(Vehicle::get()->pluck('name', 'id')),
+                    TextInput::make('vehicle_temprature')
+                        ->required(),
+
+                    TextInput::make('product_temprature')
+                        ->required(),
+                    TextInput::make('delivery_temprature')
+                        ->required(),
                     Forms\Components\DateTimePicker::make('time_in')
                         ->date()
                         ->required(),
@@ -49,7 +57,7 @@ class DeliveryRegisterResource extends Resource
                     Forms\Components\Textarea::make('extra_note')
                         ->columnSpanFull(),
 
-                ])->columns(2),
+                ])->columns(3),
             ]);
     }
 
@@ -61,10 +69,18 @@ class DeliveryRegisterResource extends Resource
             )
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('vehicle.name')
                     ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('vehicle_temprature')
+                    ->toggleable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('product_temprature')
+                    ->toggleable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('delivery_temprature')
+                    ->toggleable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('time_in')
                     ->dateTime()

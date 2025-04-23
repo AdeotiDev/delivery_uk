@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DeliveryRegister extends Model
 {
     //
+
     protected $fillable = [
         'user_id',
         'vehicle_id',
@@ -15,7 +16,10 @@ class DeliveryRegister extends Model
         'delivery_time',
         'hours_worked',
         'extra_note',
-        'closed_status'
+        'closed_status',
+        'product_temprature',
+        'vehicle_temprature',
+        'delivery_temprature',
     ];
     
 
