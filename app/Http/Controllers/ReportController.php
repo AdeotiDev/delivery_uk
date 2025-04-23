@@ -25,11 +25,18 @@ class ReportController extends Controller
             // Set date range based on report type
             switch ($reportType) {
                 case 'weekly':
-                    if ($request->filled('date')) {
-                        $date = Carbon::parse($request->input('date'));
-                        $start = $date->copy()->startOfWeek()->startOfDay();
-                        $end = $date->copy()->endOfWeek()->endOfDay();
+                    // if ($request->filled('date')) {
+                    //     $date = Carbon::parse($request->input('date'));
+                    //     $start = $date->copy()->startOfWeek()->startOfDay();
+                    //     $end = $date->copy()->endOfWeek()->endOfDay();
+                    // }
+
+                    if ($request->filled(['date_from', 'date_to'])) {
+                        $start = Carbon::parse($request->input('date_from'))->startOfDay();
+                        $end = Carbon::parse($request->input('date_to'))->endOfDay();
                     }
+
+
                     break;
 
                 case 'monthly':
@@ -54,6 +61,8 @@ class ReportController extends Controller
                 $query = DeliveryRegister::with('user', 'vehicle')
                     ->whereBetween('time_in', [$start, $end]);
 
+                // dd($query->get());
+
                 // Filter for individual scope
                 if ($scope === 'individual' && $driverId) {
                     $query->where('user_id', $driverId);
@@ -77,7 +86,7 @@ class ReportController extends Controller
             'settings' => Setting::first()
         ]);
 
-        
+
 
 
         return $pdf->download('delivery_report.pdf');

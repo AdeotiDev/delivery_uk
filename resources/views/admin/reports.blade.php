@@ -43,13 +43,18 @@
                     </select>
                 </div>
 
-                <!-- Weekly: Single Date -->
-                <div class="col-md-3 date-field" id="dateField">
-                    <label class="form-label fw-semibold">Date</label>
-                    <input type="date" class="form-control" name="date" value="{{ request('date') }}" id="dateInput">
-                </div>
+                <!-- Weekly: Date Range -->
+                {{-- <div class="col-md-3 date-field" id="dateField"> --}}
+                    {{-- <label class="form-label fw-semibold">Date</label>
+                    <input type="date" class="form-control" name="date" value="{{ request('date') }}" id="dateInput"> --}}
 
-                <!-- Monthly: Date Range -->
+                    {{-- <label class="form-label fw-semibold">Date From</label>
+                    <input type="date" class="form-control mb-2" value="{{ request('date_from') }}" name="date_from">
+                    <label class="form-label fw-semibold">Date To</label>
+                    <input type="date" class="form-control" value="{{ request('date_to') }}" name="date_to">
+                </div> --}}
+
+                <!-- Weekly and Monthly: Date Range -->
                 <div class="col-md-3 date-field d-none" id="dateRange">
                     <label class="form-label fw-semibold">Date From</label>
                     <input type="date" class="form-control mb-2" value="{{ request('date_from') }}" name="date_from">
@@ -122,13 +127,14 @@
         const reportType = document.getElementById('report_type').value;
 
         // Hide all date fields first
-        document.getElementById('dateField').classList.add('d-none');
+        // document.getElementById('dateField').classList.add('d-none');
         document.getElementById('dateRange').classList.add('d-none');
         document.getElementById('monthRange').classList.add('d-none');
 
         // Show appropriate fields
         if (reportType === 'weekly') {
-            document.getElementById('dateField').classList.remove('d-none');
+            // document.getElementById('dateField').classList.remove('d-none');
+            document.getElementById('dateRange').classList.remove('d-none');
         } else if (reportType === 'monthly') {
             document.getElementById('dateRange').classList.remove('d-none');
         } else if (reportType === 'yearly') {
@@ -151,5 +157,53 @@
         toggleDriverSelect();
     });
 </script>
+
+<script>
+    const dateFrom = document.getElementById('date_from');
+    const dateTo = document.getElementById('date_to');
+
+    // if (dateFrom && dateTo) {
+    //     dateFrom.addEventListener('change', () => {
+    //         dateTo.min = dateFrom.value;
+    //     });
+
+    //     dateTo.addEventListener('change', () => {
+    //         dateFrom.max = dateTo.value;
+    //     });
+
+    //     // Trigger on load
+    //     if (dateFrom.value) dateTo.min = dateFrom.value;
+    //     if (dateTo.value) dateFrom.max = dateTo.value;
+    // }
+
+
+
+    function updateRequiredFields() {
+    const reportType = document.getElementById('report_type').value;
+
+    const dateFields = {
+        weekly: ['date_from', 'date_to'],
+        monthly: ['date_from', 'date_to'],
+        yearly: ['month_from', 'month_to']
+    };
+
+    // First, clear all required
+    ['date_from', 'date_to', 'month_from', 'month_to'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.removeAttribute('required');
+    });
+
+    // Set required for current type
+    (dateFields[reportType] || []).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.setAttribute('required', 'required');
+    });
+}
+
+document.getElementById('report_type').addEventListener('change', updateRequiredFields);
+window.addEventListener('DOMContentLoaded', updateRequiredFields);
+
+</script>
+
 
 @endsection
