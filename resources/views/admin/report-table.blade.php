@@ -29,6 +29,7 @@
                         <th>Vehicle Temprature</th>
                         <th>Product Temprature</th>
                         <th>Delivery Temprature</th>
+                        <th>Incident Report</th>
                         <th>Time In</th>
                         <th>Time Out</th>
                         <th>Hours Worked</th>
@@ -47,6 +48,7 @@
                             <td>{{ $item->vehicle_temprature ?? '-' }}</td>
                             <td>{{ $item->product_temprature ?? '-' }}</td>
                             <td>{{ $item->delivery_temprature ?? '-' }}</td>
+                            <td>{{ $item->extra_note ?? '-' }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->time_in)->format('H:i') }}</td>
                             <td>
                                 @if($item->time_out)
