@@ -108,7 +108,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">🚚 DeliveryApp</a>
+            <a class="navbar-brand" href="#">🚚 {{ $settings->app_name ?? 'DeliveryApp' }}</a>
         </div>
     </nav>
 
@@ -181,7 +181,7 @@
 
     <!-- Footer -->
     <footer>
-        &copy; {{ now()->year }} DeliveryApp — Crafted for efficient logistics.
+        &copy; {{ now()->year }} {{ $settings->app_name ?? 'DeliveryApp' }} — Crafted for efficient logistics.
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
