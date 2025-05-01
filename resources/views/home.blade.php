@@ -69,6 +69,11 @@
             box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s;
         }
+        .carousel img {
+    max-height: 500px;
+    object-fit: cover;
+}
+
         .stat-box:hover {
             transform: translateY(-5px);
         }
@@ -114,6 +119,39 @@
             <p>Monitor deliveries. Manage drivers. Stay efficient — all from one elegant dashboard.</p>
         </div>
     </section>
+
+    <!-- Carousel Section -->
+<section class="py-5 bg-white">
+    <div class="container-fluid">
+        <div id="vehicleCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner rounded-4 shadow-sm">
+                <div class="carousel-item active">
+                    <img src="{{asset('images/car-1.jpg')}}" class="d-block w-100" alt="Car 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/car-2.jpg')}}" class="d-block w-100" alt="Truck 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/car-3.jpg')}}" class="d-block w-100" alt="Van">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/car-4.jpg')}}" class="d-block w-100" alt="Van">
+                </div>
+                <div class="carousel-item">
+                    <img src="{{asset('images/car-3.jpg')}}" class="d-block w-100" alt="Van">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
 
     <!-- Stats Section -->
     <section class="stats">
