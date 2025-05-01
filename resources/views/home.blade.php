@@ -100,6 +100,7 @@
     <!-- Top Bar -->
     <div class="top-bar d-flex justify-content-end">
         <div>
+            <a href="/about">About</a>
             <a href="/app">Driver Login</a>
             <a href="/cpanel">Admin Login</a>
         </div>
