@@ -37,8 +37,12 @@
 <body>
 
     
+    
+    <center>
+        <img src="{{ public_path('storage/' . $settings->app_logo) }}" style="height:80px; border-radius:8px;">
+    </center>
+    
     <h3 class="mb-4">{{ $settings->app_name ?? '-' }}</h3>
-
     <p>Delivery Report</p>
 
     @php
@@ -62,6 +66,7 @@
                 <th>Date</th>
                 <th>Vehicle No</th>
                 <th>Time In</th>
+                <th>Take off time</th>
                 <th>Time Out</th>
                 <th>Hours Worked</th>
             </tr>
@@ -79,6 +84,7 @@
                     <td>{{ \Carbon\Carbon::parse($item->time_in)->format('Y-m-d') }}</td>
                     <td>{{ $item->vehicle->plate_number ?? '-' }}</td>
                     <td>{{ \Carbon\Carbon::parse($item->time_in)->format('H:i') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($item->take_off_time)->format('H:i') }}</td>
                     
                     <td>
                         @if($item->time_out)

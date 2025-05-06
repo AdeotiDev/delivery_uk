@@ -7,8 +7,10 @@
 
 <div class="card">
     <div class="card-body">
+        <center><img src="{{asset('storage/'. $settings->app_logo)}}" style="height:80px; border-radius:8px;"></center>
+
         @if($isIndividual)
-            <h5 class="mb-3">Individual Driver Report</h5>
+            <h5 class="mb-3">Individual Route Report</h5>
             {{-- <p><strong>Driver ID:</strong> {{ $reportData->first()->user->id ?? 'N/A' }}</p> --}}
             <p><strong>Driver Name:</strong> {{ $reportData->first()->user->name ?? 'N/A' }}</p>
         @else

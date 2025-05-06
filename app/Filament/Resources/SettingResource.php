@@ -71,9 +71,22 @@ class SettingResource extends Resource
 
                         Section::make('media')->schema([
                             FileUpload::make('app_logo')
+                                ->uploadingMessage('Uploading App Logo')
                                 ->default(null),
                             FileUpload::make('app_favicon')
                                 ->default(null),
+
+
+
+                            Section::make('Carousel')
+                                ->schema(
+                                    [
+                                        FileUpload::make('carousels')
+                                            ->label('Upload carousel images')
+                                            ->multiple()
+                                            ->uploadingMessage('Uploading carousels...'),
+                                    ]
+                                )
                         ])->columns(2)
                     ])->columns(4)
             ]);

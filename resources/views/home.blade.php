@@ -109,7 +109,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="#">🚚 {{ $settings->app_name ?? 'DeliveryApp' }}</a>
+            <a class="navbar-brand" href="#"><img src="{{asset('storage/'. $settings->app_logo)}}" style="height:40px; border-radius:8px;"> {{ $settings->app_name ?? 'DeliveryApp' }}</a>
         </div>
     </nav>
 
@@ -122,37 +122,28 @@
     </section>
 
     <!-- Carousel Section -->
-<section class="py-5 bg-white">
-    <div class="container-fluid">
-        <div id="vehicleCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner rounded-4 shadow-sm">
-                <div class="carousel-item active">
-                    <img src="{{asset('images/car-1.jpg')}}" class="d-block w-100" alt="Car 1">
+    <section class="py-5 bg-white">
+        <div class="container-fluid">
+            <div id="vehicleCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-4 shadow-sm">
+                    @foreach ($settings->carousels as $index => $image)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Carousel Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
                 </div>
-                <div class="carousel-item">
-                    <img src="{{asset('images/car-2.jpg')}}" class="d-block w-100" alt="Truck 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('images/car-3.jpg')}}" class="d-block w-100" alt="Van">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('images/car-4.jpg')}}" class="d-block w-100" alt="Van">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{asset('images/car-3.jpg')}}" class="d-block w-100" alt="Van">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#vehicleCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </div>
-</section>
+    </section>
+    
 
     <!-- Stats Section -->
     <section class="stats">

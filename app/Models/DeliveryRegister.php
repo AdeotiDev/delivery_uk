@@ -18,18 +18,20 @@ class DeliveryRegister extends Model
         'extra_note',
         'closed_status',
         'product_temprature',
+        'take_off_time',
         'vehicle_temprature',
         'delivery_temprature',
     ];
-    
 
 
-    public function vehicle(){
+
+    public function vehicle()
+    {
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
 }

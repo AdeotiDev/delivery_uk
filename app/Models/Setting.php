@@ -29,5 +29,10 @@ class Setting extends Model
         'app_currency_symbol',
         'app_currency_position',
         'app_timezone',
+        'carousels',
+    ];
+
+    protected $casts = [
+        'carousels' => 'array',
     ];
 }

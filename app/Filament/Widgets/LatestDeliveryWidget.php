@@ -17,7 +17,7 @@ class LatestDeliveryWidget extends BaseWidget
     {
         return $table
             ->query(
-                DeliveryRegister::query()
+                DeliveryRegister::query()->latest()
             )
             ->columns([
                 // ...
@@ -36,11 +36,12 @@ class LatestDeliveryWidget extends BaseWidget
                     ->toggleable()
                     ->placeholder('N/A')
                     ->sortable(),
-                TextColumn::make('time_in')->date(),
-                TextColumn::make('time_out')->date()->placeholder('Not filled!'),
+                TextColumn::make('time_in')->dateTime(),
+                TextColumn::make('take_off_time')->dateTime()->placeholder('Not filled!'),
+                TextColumn::make('time_out')->dateTime()->placeholder('Not filled!'),
                 TextColumn::make('hours_worked')->placeholder('Not available!')
                     ->badge(),
-                TextColumn::make('created_at'),
+                TextColumn::make('created_at')->dateTime(),
             ]);
     }
 }

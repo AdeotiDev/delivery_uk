@@ -51,6 +51,9 @@ class DeliveryRegisterResource extends Resource
                     Forms\Components\DateTimePicker::make('time_in')
                         ->date()
                         ->required(),
+                    Forms\Components\DateTimePicker::make('take_off_time')
+                        ->date()
+                        ->required(),
                     // Forms\Components\DateTimePicker::make('time_out'),
                     // Forms\Components\DateTimePicker::make('delivery_time'),
 
@@ -65,7 +68,7 @@ class DeliveryRegisterResource extends Resource
     {
         return $table
             ->query(
-                DeliveryRegister::query()->where('user_id', Auth::user()->id)
+                DeliveryRegister::query()->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')
             )
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
@@ -74,16 +77,24 @@ class DeliveryRegisterResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('vehicle_temprature')
+                    ->placeholder('N/A')
                     ->toggleable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product_temprature')
+                    ->placeholder('N/A')
                     ->toggleable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('delivery_temprature')
+                    ->placeholder('N/A')
                     ->toggleable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('time_in')
                     ->dateTime()
+                    ->copyable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('take_off_time')
+                    ->dateTime()
+                    ->placeholder('N/A')
                     ->copyable()
                     ->sortable(),
                 TextColumn::make('time_out')

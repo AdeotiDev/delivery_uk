@@ -31,16 +31,25 @@ class DriverLatestDeliveryWidget extends BaseWidget
 
                 Tables\Columns\TextColumn::make('vehicle_temprature')
                     ->toggleable()
+                    ->placeholder('N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('product_temprature')
                     ->toggleable()
+                    ->placeholder('N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('delivery_temprature')
                     ->toggleable()
+                    ->placeholder('N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('time_in')
                     ->dateTime()
                     ->copyable()
+                    ->placeholder('N/A')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('take_off_time')
+                    ->dateTime()
+                    ->copyable()
+                    ->placeholder('N/A')
                     ->sortable(),
                 TextColumn::make('time_out')
                     ->placeholder('Not filled!')

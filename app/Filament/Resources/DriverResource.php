@@ -9,6 +9,7 @@ use Dom\Text;
 use Filament\Forms;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,7 +24,8 @@ class DriverResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $modelLabel = "Driver";
+    protected static ?string $modelLabel = "Staff";
+    protected static ?string $slug = "staff";
 
     public static function form(Form $form): Form
     {
@@ -48,7 +50,13 @@ class DriverResource extends Resource
                         ->required()
                         ->revealable()
                         ->maxLength(255),
-                    Hidden::make('role')->default('driver'),
+                    Select::make('role')
+                        ->required()
+                        ->options([
+                            'admin' => 'Admin',
+                            'staff' => 'Staff',
+                            'driver' => 'Driver',
+                        ]),
                 ])->columns(2),
 
 
@@ -59,15 +67,20 @@ class DriverResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->query(User::query()->where('role', 'driver'))
+            ->query(User::query()->latest())
             ->columns([
                 //
                 TextColumn::make('name'),
                 TextColumn::make('email')->copyable(),
-                TextColumn::make('phone'),
+                TextColumn::make('role')
+                    ->badge()->color(fn(string $state): string => match ($state) {
+                        'driver' => 'gray',
+                        'admin' => 'info',
+                        'staff' => 'success',
+                    }),
+                TextColumn::make('phone')->placeholder('N/A'),
                 TextColumn::make('created_at')
-                ->dateTime()
-                ,
+                    ->dateTime(),
             ])
             ->filters([
                 //
