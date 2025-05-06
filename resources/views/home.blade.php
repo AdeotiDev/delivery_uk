@@ -122,6 +122,7 @@
     </section>
 
     <!-- Carousel Section -->
+    @if ($settings->carousels != NULL)
     <section class="py-5 bg-white">
         <div class="container-fluid">
             <div id="vehicleCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -143,6 +144,7 @@
             </div>
         </div>
     </section>
+    @endif
     
 
     <!-- Stats Section -->
