@@ -47,7 +47,7 @@
     @endphp
 
     @if($isIndividual)
-        <p><strong>Driver ID:</strong> {{ $reportData->first()->user->id ?? 'N/A' }}</p>
+        {{-- <p><strong>Driver ID:</strong> {{ $reportData->first()->user->id ?? 'N/A' }}</p> --}}
         <p><strong>Driver Name:</strong> {{ $reportData->first()->user->name ?? 'N/A' }}</p>
     @endif
 
@@ -56,7 +56,7 @@
             <tr>
                 <th>S/N</th>
                 @if(!$isIndividual)
-                    <th>Driver ID</th>
+                    {{-- <th>Driver ID</th> --}}
                     <th>Driver Name</th>
                 @endif
                 <th>Date</th>
@@ -72,7 +72,7 @@
                     <td>{{ $index + 1 }}</td>
 
                     @if(!$isIndividual)
-                        <td>{{ $item->user->id ?? '-' }}</td>
+                        {{-- <td>{{ $item->user->id ?? '-' }}</td> --}}
                         <td>{{ $item->user->name ?? '-' }}</td>
                     @endif
 

@@ -9,7 +9,7 @@
     <div class="card-body">
         @if($isIndividual)
             <h5 class="mb-3">Individual Driver Report</h5>
-            <p><strong>Driver ID:</strong> {{ $reportData->first()->user->id ?? 'N/A' }}</p>
+            {{-- <p><strong>Driver ID:</strong> {{ $reportData->first()->user->id ?? 'N/A' }}</p> --}}
             <p><strong>Driver Name:</strong> {{ $reportData->first()->user->name ?? 'N/A' }}</p>
         @else
             <h5 class="mb-3">General Driver Report</h5>
@@ -21,7 +21,7 @@
                     <tr>
                         <th>S/N</th>
                         @if(!$isIndividual)
-                            <th>Driver ID</th>
+                            {{-- <th>Driver ID</th> --}}
                             <th>Driver Name</th>
                         @endif
                         <th>Date</th>
@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             @if(!$isIndividual)
-                                <td>{{ $item->user->id ?? '-' }}</td>
+                                {{-- <td>{{ $item->user->id ?? '-' }}</td> --}}
                                 <td>{{ $item->user->name ?? '-' }}</td>
                             @endif
                             <td>{{ \Carbon\Carbon::parse($item->time_in)->format('M d, Y') }}</td>
