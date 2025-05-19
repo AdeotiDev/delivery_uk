@@ -49,10 +49,7 @@ class VehicleResource extends Resource
                         ])
                         ->required()
                         ->default('Van'),
-                    Select::make('driver_id')
-                        ->required()
-                        ->label('Driver')
-                        ->options(User::where('role', 'driver')->get()->pluck('name', 'id')),
+                   
                     Select::make('status')
                         ->options(
                             [
@@ -77,9 +74,7 @@ class VehicleResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('type')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('driver.name')
-                    ->numeric()
-                    ->sortable(),
+               
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

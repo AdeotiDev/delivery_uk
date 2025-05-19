@@ -21,6 +21,7 @@ class DeliveryRegister extends Model
         'take_off_time',
         'vehicle_temprature',
         'delivery_temprature',
+        'delivery_route_id',
     ];
 
 
@@ -28,6 +29,10 @@ class DeliveryRegister extends Model
     public function vehicle()
     {
         return $this->belongsTo(Vehicle::class);
+    }
+    public function delivery_route()
+    {
+        return $this->belongsTo(DeliveryRoute::class);
     }
 
     public function user()

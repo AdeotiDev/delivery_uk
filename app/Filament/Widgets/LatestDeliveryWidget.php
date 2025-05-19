@@ -24,6 +24,9 @@ class LatestDeliveryWidget extends BaseWidget
 
                 TextColumn::make('user.name')->label('Driver'),
                 TextColumn::make('vehicle.name')->label('Vehicle'),
+                TextColumn::make('delivery_route.route_name')
+                    ->placeholder('N/A')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('vehicle_temprature')
                     ->toggleable()
                     ->placeholder('N/A')
@@ -32,6 +35,7 @@ class LatestDeliveryWidget extends BaseWidget
                     ->toggleable()
                     ->placeholder('N/A')
                     ->sortable(),
+                    
                 Tables\Columns\TextColumn::make('delivery_temprature')
                     ->toggleable()
                     ->placeholder('N/A')

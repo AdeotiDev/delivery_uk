@@ -33,6 +33,9 @@ class DriverLatestDeliveryWidget extends BaseWidget
                     ->toggleable()
                     ->placeholder('N/A')
                     ->sortable(),
+                TextColumn::make('delivery_route.route_name')
+                    ->placeholder('N/A')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('product_temprature')
                     ->toggleable()
                     ->placeholder('N/A')

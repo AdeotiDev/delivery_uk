@@ -7,6 +7,7 @@ use Filament\Tables;
 use App\Models\Vehicle;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\DeliveryRoute;
 use App\Models\DeliveryRegister;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
@@ -14,15 +15,15 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\DateTimePicker;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Driver\Resources\DeliveryRegisterResource\Pages;
-use App\Filament\Driver\Resources\DeliveryRegisterResource\Pages\TimeOutForm;
 use App\Filament\Driver\Resources\DeliveryRegisterResource\RelationManagers;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\TextColumn;
+use App\Filament\Driver\Resources\DeliveryRegisterResource\Pages\TimeOutForm;
 
 class DeliveryRegisterResource extends Resource
 {
@@ -54,8 +55,11 @@ class DeliveryRegisterResource extends Resource
                     Forms\Components\DateTimePicker::make('take_off_time')
                         ->date()
                         ->required(),
-                    // Forms\Components\DateTimePicker::make('time_out'),
-                    // Forms\Components\DateTimePicker::make('delivery_time'),
+                    Select::make('delivery_route_id')
+                        ->label('Delivery Route')
+                        ->required()
+                        ->options(DeliveryRoute::get()->pluck('route_name', 'id'))
+                        ->columnSpanFull(),
 
                     Forms\Components\Textarea::make('extra_note')
                         ->columnSpanFull(),
@@ -75,6 +79,9 @@ class DeliveryRegisterResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('vehicle.name')
                     ->numeric()
+                    ->sortable(),
+                TextColumn::make('delivery_route.route_name')
+                    ->placeholder('N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('vehicle_temprature')
                     ->placeholder('N/A')

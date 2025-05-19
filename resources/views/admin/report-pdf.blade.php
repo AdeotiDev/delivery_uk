@@ -39,7 +39,7 @@
     
     
     <center>
-        <img src="{{ public_path('storage/' . $settings->app_logo) }}" style="height:80px; border-radius:8px;">
+        <img src="{{ public_path('storage/' . $settings->app_logo) }}" style="height:160px; border-radius:8px;">
     </center>
     
     <h3 class="mb-4">{{ $settings->app_name ?? '-' }}</h3>
