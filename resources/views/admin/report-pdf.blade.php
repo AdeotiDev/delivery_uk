@@ -65,6 +65,8 @@
                 @endif
                 <th>Date</th>
                 <th>Vehicle No</th>
+                <th>Delivery Route</th>
+                
                 <th>Time In</th>
                 <th>Take off time</th>
                 <th>Time Out</th>
@@ -83,6 +85,7 @@
 
                     <td>{{ \Carbon\Carbon::parse($item->time_in)->format('Y-m-d') }}</td>
                     <td>{{ $item->vehicle->plate_number ?? '-' }}</td>
+                    <td>{{ $item->delivery_route->route_name ?? '-' }}</td>
                     <td>{{ \Carbon\Carbon::parse($item->time_in)->format('H:i') }}</td>
                     <td>{{ \Carbon\Carbon::parse($item->take_off_time)->format('H:i') }}</td>
                     
