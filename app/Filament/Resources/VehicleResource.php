@@ -7,6 +7,7 @@ use App\Filament\Resources\VehicleResource\RelationManagers;
 use App\Models\User;
 use App\Models\Vehicle;
 use Filament\Forms;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -27,6 +28,7 @@ class VehicleResource extends Resource
         return $form
             ->schema([
                 Section::make('')->schema([
+                    Hidden::make('driver_id')->default(1),
                     Forms\Components\TextInput::make('name')
                         ->required()
                         ->maxLength(255),
