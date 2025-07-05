@@ -93,6 +93,7 @@
     @if(isset($reportData) && $reportData->count())
         @include('admin.report-table', ['reportData' => $reportData])
 
+    <div style="display:flex; gap:40px;">
         <!-- PDF Download -->
         <form method="POST" action="{{ route('admin.reports.download') }}">
             @csrf
@@ -101,6 +102,17 @@
                 <i class="bi bi-file-earmark-pdf me-1"></i> Download PDF
             </button>
         </form>
+
+        <!-- Excel Download -->
+        <form method="POST" action="{{ route('admin.reports.download.excel') }}">
+            @csrf
+            <input type="hidden" name="data" value="{{ base64_encode(serialize($reportData)) }}">
+            <button type="submit" class="btn btn-outline-success mt-4 ms-2">
+                <i class="bi bi-file-earmark-excel me-1"></i> Download Excel
+            </button>
+        </form>
+    </div>
+
     @elseif(isset($reportData))
         <div class="alert alert-warning">
             <strong>No results found for the selected filters.</strong>

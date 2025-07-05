@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use App\Exports\ReportExport;
 use App\Models\DeliveryRegister;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -90,5 +92,31 @@ class ReportController extends Controller
 
 
         return $pdf->download('delivery_report.pdf');
+    }
+
+
+    public function downloadExcel(Request $request)
+    {
+        $rawData = unserialize(base64_decode($request->data));
+
+        $formatted = collect($rawData)->map(function ($item, $index) {
+            return [
+                'S/N' => $index + 1,
+                'Driver Name' => optional($item->user)->name ?? '-',
+                'Date' => \Carbon\Carbon::parse($item->time_in)->format('M d, Y'),
+                'Vehicle No' => optional($item->vehicle)->plate_number ?? '-',
+                'Delivery Route' => optional($item->delivery_route)->route_name ?? '-',
+                'Vehicle Temperature' => $item->vehicle_temprature ?? '-',
+                'Product Temperature' => $item->product_temprature ?? '-',
+                'Delivery Temperature' => $item->delivery_temprature ?? '-',
+                'Incident Report' => $item->extra_note ?? '-',
+                'Time In' => \Carbon\Carbon::parse($item->time_in)->format('H:i'),
+                'Take Off Time' => $item->take_off_time ? \Carbon\Carbon::parse($item->take_off_time)->format('H:i') : '-',
+                'Time Out' => $item->time_out ? \Carbon\Carbon::parse($item->time_out)->format('H:i') : 'Not completed',
+                'Hours Worked' => $item->hours_worked ? "{$item->hours_worked} hours" : 'Pending',
+            ];
+        });
+
+        return Excel::download(new ReportExport($formatted), 'delivery-report.xlsx');
     }
 }
